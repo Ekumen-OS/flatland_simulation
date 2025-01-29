@@ -1,0 +1,6 @@
+properties: {}
+
+layers:
+- name: "flatland_map"
+  map: "../maps/demo_map.yaml"
+  color: [0.7, 0.7, 0.7, 1]
