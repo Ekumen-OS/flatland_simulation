@@ -29,23 +29,6 @@ include_directories(
   ${YAML_CPP_INCLUDE_DIRS}
 )
 
-# add_library(flatland_lib
-# )
-
-# add_dependencies(flatland_lib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} flatland_plugins)
-# target_link_libraries(flatland_lib
-#   ${catkin_LIBRARIES}
-#   yaml-cpp
-# )
-
-
-# Mark executables and/or libraries for installation
-# install(TARGETS flatland_lib
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
-
 # Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
