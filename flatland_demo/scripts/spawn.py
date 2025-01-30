@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 import rospy
 from flatland_msgs.srv import SpawnModel, DeleteModel
-from geometry_msgs.msg import PoseStamped, Pose
 import rospkg
 
 
-if __name__ == '__main__':
-    rospy.init_node('spawn')
+if __name__ == "__main__":
+    rospy.init_node("spawn")
     rospack = rospkg.RosPack()
-    model_path = rospack.get_path('flatland_demo') + "/model/andino.yaml"
+    model_path = rospack.get_path("flatland_demo") + "/model/andino.yaml"
     model_name = "robot"
 
-    _spawn_service = rospy.ServiceProxy('/spawn_model', SpawnModel)
-    _delete_service = rospy.ServiceProxy('/delete_model', DeleteModel)
+    _spawn_service = rospy.ServiceProxy("/spawn_model", SpawnModel)
+    _delete_service = rospy.ServiceProxy("/delete_model", DeleteModel)
 
     rospy.set_param("/robot/cmd_vel", "cmd_vel")
     rospy.set_param("/robot/odom", "odom")
@@ -28,8 +27,8 @@ if __name__ == '__main__':
         yaml_path=model_path,
         name=model_name,
     )
-    spawn_req.pose.x = -8   
-    spawn_req.pose.y = 3.5  
+    spawn_req.pose.x = -8
+    spawn_req.pose.y = 3.5
     spawn_req.pose.theta = -1.57
     result = _spawn_service(spawn_req)
     print(result)
