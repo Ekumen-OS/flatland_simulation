@@ -1,0 +1,61 @@
+bodies:
+- name: $eval param("/robot/base_link", "base_link") # /base_link
+  type: dynamic
+  color: [1, 0, 0, 0.75]
+  footprints:
+  - type: polygon
+    density: 100
+    points: [ [-0.0975, -0.04],
+            [.0975, -0.04],
+            [.0975, 0.04],
+            [-0.0975, 0.04] ]
+
+- name:  $eval param("/robot/rear_left_wheel", "rear_left_wheel") # /base_link
+  color: [1, 1, 1, 0.75]
+  footprints:
+  - type: polygon
+    density: 1.0
+    points: [[ 0.01225, -0.01655],
+            [  0.01225,  0.01655],
+            [ -0.01225, 0.01655],
+            [ -0.01225, -0.01655]]
+
+- name: $eval param("/robot/rear_right_wheel", "rear_right_wheel") # /base_link
+  color: [1, 1, 1, 0.75]
+  footprints:
+  - type: polygon
+    density: 1.0
+    points: [[ 0.01225, -0.01655],
+            [ 0.01225,  0.01655],
+            [-0.01225, 0.01655],
+            [-0.01225, -0.01655]]
+
+joints:
+- type: weld
+  name: rear_right_wheel_weld
+  bodies:
+  - name:  $eval param("/robot/rear_right_wheel", "rear_right_wheel") # /base_link
+    anchor: [0, 0]
+  - name: $eval param("/robot/base_link", "base_link") # /base_link
+    anchor: [-0.0185, 0.06725]
+
+- type: weld
+  name: rear_left_wheel_weld
+  bodies:
+  - name: $eval param("/robot/rear_left_wheel", "rear_left_wheel") # /base_link
+    anchor: [0, 0]
+  - name: $eval param("/robot/base_link", "base_link") # /base_link
+    anchor: [-0.0185, -0.06725]
+
+plugins:
+- type: ModelTfPublisher
+  name: $eval param("/robot/tf_publisher", "tf_publisher") # tf_publisher
+  publish_tf_world: true
+
+- type: DiffDrive
+  name: andino_diff_drive
+  body: $eval param("/robot/base_link", "base_link") # /base_link
+  odom_frame_id: odom
+  pub_rate: .inf
+  twist_sub: $eval param("/robot/cmd_vel", "/cmd_vel") #/cmd_vel
+  odom_pub: $eval param("/robot/odom", "/odom") # /odom

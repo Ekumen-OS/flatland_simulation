@@ -1,0 +1,8 @@
+<launch>
+    <!-- start node -->
+    <arg name="nr" default="3"/>
+
+    <node pkg="flatland_demo" type="play_n_rosbag.py" name="play_n_rosbag" output="screen" >
+      <param name="number_of_robots" value="$(arg nr)"/>
+    </node>
+</launch>
