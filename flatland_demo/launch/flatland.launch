@@ -17,7 +17,7 @@
     <arg name="viz_pub_rate" value="$(arg viz_pub_rate)" />
     <arg name="update_rate" value="$(arg update_rate)" />
   </include>
-  
+
   <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom"/>
 
 	<node pkg="flatland_demo" type="spawn_multiple.py" name="spawn_multiple" output="screen" if="$(arg multi_robot)"/>
